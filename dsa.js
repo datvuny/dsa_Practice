@@ -19,10 +19,10 @@ var containsDuplicate = function(nums) {
 const containsDuplicate = (nums) => {
     if (nums.length <= 1) return false
     let sortedNum = nums.sort()
-    for (let i = 0; i<sortedNum.length - 1; i++){
+    for (let i = 0; i<sortedNum.length -1; i++){
         if (sortedNum[i] == sortedNum[i+1]) return true
-        return false
     }
+    return false
 };
 */
 const containsDuplicate = (nums) => {
@@ -34,3 +34,31 @@ const containsDuplicate = (nums) => {
     }
     return false
 };
+
+
+//  ANAGRAMS
+
+// const isAnagram = (s, t)=> {
+//     if (s.split('').sort().join('')===t.split('').sort().join(''))return true
+//     return false
+// };
+const isAnagram = (s, t)=> {
+    if (s.length !== t.length) return false;
+    
+    let letters = {};
+
+    for (let i = 0; i < s.length; i++) {
+         letters[s[i]] = letters[s[i]] ? letters[s[i]] + 1 : 1;
+         letters[t[i]] = letters[t[i]] ? letters[t[i]] - 1 : -1;
+        console.log(letters)
+    }
+    
+    for (let letter in letters) {
+
+        if (letters[letter] !== 0) {
+            return false;
+        }
+    }
+    return true;
+};
+
