@@ -105,3 +105,22 @@ const twoSum = (nums, target) =>{
     }
 }
 
+//  GROUP ANAGRAMS
+/*
+Given an array of strings strs, group the anagrams together. 
+You can return the answer in any order.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, 
+typically using all the original letters exactly once.
+*/
+
+const groupAnagrams = (strs) => {
+    let map = new Map()
+    for (i=0; i<strs.length; i++){
+        let sortedString = strs[i].split('').sort().join('')
+        console.log(sortedString)
+        if (!map.has(sortedString)){
+            map.set(sortedString, [strs[i]])
+        } else map.get(sortedString).push(strs[i])
+    }
+    return Array.from(map.values())
+};
