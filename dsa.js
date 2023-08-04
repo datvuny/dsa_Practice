@@ -124,3 +124,28 @@ const groupAnagrams = (strs) => {
     }
     return Array.from(map.values())
 };
+
+
+//  TOP K REQUENT ELEMENTS
+/*
+Given an integer array nums and an integer k, return the k most
+frequent elements. You may return the answer in any order.
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+*/
+
+const topKFrequent = (nums, k) => {
+    let result = []
+    let map = new Map()
+    for(let num in nums){
+      if (map.has(num)){
+        map.set(num, map.get(num)+1)
+      } else {map.set(num, 1)
+      }
+    }
+    const sortedEntry = [...map.entries()].sort((a,b) => a[1]-b[1])
+    for (let i =0; i<k; i++){
+      result.push(sortedEntry[i][0])
+    }
+    return result
+};
