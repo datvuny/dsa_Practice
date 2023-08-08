@@ -212,3 +212,61 @@ const productExceptSelf = (nums) => {
     return result
 };
 
+
+// LONGEST CONSECUTIVE SEQUENCE
+/* 
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+You must write an algorithm that runs in O(n) time.
+
+Example 1:
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+
+const longestConsecutive = (nums) => {
+    if (nums.length == 0) return 0
+    if (nums.length == 1) return 1
+    let sortedNum = nums.sort((a,b) => a -b)
+    let maxCount = 1
+    let count = 1
+    for (let i =1; i<sortedNum.length; i++){
+        if (sortedNum[i-1] != sortedNum[i]){
+           if (sortedNum[i-1]+1 == sortedNum[i]) {
+            count++
+            maxCount = Math.max(maxCount, count)
+            }  
+            else { count = 1}
+        }
+        
+    }
+    return maxCount
+};
+*/
+
+const longestConsecutive = (nums) => {
+    if (nums.length === 0) return 0;
+
+    // Create a set to store unique numbers
+    const numSet = new Set(nums);
+
+    let maxCount = 0;
+
+    for (const num of numSet) {
+        // Check if the current number is the start of a sequence
+        if (!numSet.has(num - 1)) {
+            let currentNum = num;
+            let currentCount = 1;
+
+            // Find the length of the consecutive sequence
+            while (numSet.has(currentNum + 1)) {
+                currentNum++;
+                currentCount++;
+            }
+
+            maxCount = Math.max(maxCount, currentCount);
+        }
+    }
+
+    return maxCount;
+};
+
