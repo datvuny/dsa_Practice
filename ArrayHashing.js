@@ -1,4 +1,5 @@
-// ARRAYS & HASHING
+//    ARRAYS & HASHING    //
+///////////////////////////
 
 /* 
 Contains Duplicates
@@ -269,4 +270,3 @@ const longestConsecutive = (nums) => {
 
     return maxCount;
 };
-
