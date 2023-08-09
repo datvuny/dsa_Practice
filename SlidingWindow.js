@@ -44,4 +44,34 @@ const maxProfit = (prices) => {
     }
     return max_profit;
   };
-  
+
+  //    LONGEST SUBSTRING W/O REPEATING CHAR    //
+  ///////////////////////////////////////////////
+  /*
+Given a string s, find the length of the longest 
+substring without repeating characters.
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+  */
+
+const lengthOfLongestSubstring = s => {
+    const set = new Set()
+    let left = 0
+    let maxSize = 0
+
+    if(s.length<2)return s.length
+    
+    for(let i =0;i<s.length;i++){
+        while(set.has(s[i])){
+            set.delete(s[left])
+            left++
+        }
+        set.add(s[i])
+        maxSize = Math.max(maxSize, i-left+1)
+    }
+    return maxSize
+};
+
