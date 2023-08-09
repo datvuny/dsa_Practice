@@ -75,3 +75,45 @@ const lengthOfLongestSubstring = s => {
     return maxSize
 };
 
+//      LONGEST REPEATING CHARACTER W/ REPLACEMENT    //
+//////////////////////////////////////////////////////
+
+/*
+You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+Example 1:
+
+Input: s = "ABAB", k = 2
+Output: 4
+Explanation: Replace the two 'A's with two 'B's or vice versa.
+*/
+
+const characterReplacement = (s, k) => {
+    const hash = new Map();
+    let result = 0;
+    let maxCount = 0; // Keep track of the maximum occurrence of a character in a window
+    let left = 0;
+
+    for (let r = 0; r < s.length; r++) {
+        if (hash.has(s[r])) {
+            hash.set(s[r], hash.get(s[r]) + 1); // Increment the count of the character in the window
+        } else {
+            hash.set(s[r], 1);
+        }
+        
+        maxCount = Math.max(maxCount, hash.get(s[r])); // Update maxCount with the highest character count
+        
+        // Check if the number of characters to be replaced (length of current window - maxCount) exceeds k
+        // If it does, then we need to shrink the window by moving the left pointer
+        while ((r - left + 1) - maxCount > k) {
+            hash.set(s[left], hash.get(s[left]) - 1); // Decrement the count of the character as we move the window
+            left += 1;
+            maxCount = Math.max(...hash.values()); // Recalculate maxCount after removing one character from the window
+        }
+        
+        result = Math.max(result, r - left + 1); // Update the maximum length of the substring with the same letter
+    }
+    
+    return result;
+};
