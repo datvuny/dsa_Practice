@@ -117,3 +117,59 @@ const characterReplacement = (s, k) => {
     
     return result;
 };
+
+
+//      Min WINDOW SUBSTRING        //
+/////////////////////////////////////
+
+/*
+Given two strings s and t of lengths m and n respectively, return the minimum window 
+substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+The testcases will be generated such that the answer is unique.
+
+Example 1:
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+*/
+
+const minWindow = (s, t) => {
+    let left = 0;
+    let right = 0;
+    let charCount = {}; // to store character frequencies in t
+    let requiredChars = t.length; // count of characters in t
+
+    // Count characters in t
+    for (const char of t) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+
+    let minLength = Infinity;
+    let minSubstring = '';
+
+    while (right < s.length) {
+        if (charCount[s[right]] > 0) {
+            requiredChars--; // Decrement requiredChars if a needed character is found
+        }
+
+        charCount[s[right]] = (charCount[s[right]] || 0) - 1;
+        right++;
+
+        // Check if all required characters are present
+        while (requiredChars === 0) {
+            if (right - left < minLength) {
+                minLength = right - left;
+                minSubstring = s.slice(left, right);
+            }
+
+            charCount[s[left]]++;
+            if (charCount[s[left]] > 0) {
+                requiredChars++; // Increment requiredChars if a required character is removed
+            }
+            left++;
+        }
+    }
+
+    return minSubstring; 
+};
