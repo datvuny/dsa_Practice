@@ -118,3 +118,28 @@ const maxDepth3 = (root) => {
     
     return maxDepth;
 };
+
+//      IS SAME TREE        //
+/////////////////////////////
+/*
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+Example 1:
+Input: p = [1,2,3], q = [1,2,3]
+Output: true
+*/
+const isSameTree = (p, q) => {
+    if (!p && !q) {
+        return true; // Both trees are empty
+    }
+    
+    if (!p || !q) {
+        return false; // One tree is empty while the other isn't
+    }
+    
+    if (p.val !== q.val) {
+        return false; // Nodes have different values
+    }
+    
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+};
