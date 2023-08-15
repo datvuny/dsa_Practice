@@ -178,3 +178,35 @@ var reorderList = function(head) {
     }
 }
 
+//      REMOVE Nth NODE FROM LIST   //
+/*
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+Example 1:
+
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+ */
+const removeNthFromEnd = (head, n) => {
+    // Create a dummy node to handle cases where the head needs to be removed
+    const dummy = new ListNode(0);
+    dummy.next = head;
+
+    let fast = dummy;
+    let slow = dummy;
+
+    // Move fast pointer n+1 steps ahead
+    for (let i = 0; i <= n; i++) {
+        fast = fast.next;
+    }
+
+    // Move fast and slow pointers simultaneously
+    while (fast !== null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+
+    // Remove the nth node from the end
+    slow.next = slow.next.next;
+
+    return dummy.next;
+};
