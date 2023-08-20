@@ -240,3 +240,39 @@ const lowestCommonAncestor = (root, p, q) => {
       return root; // Found the split point, this is the LCA
   }
 };
+
+
+//    BINARY TREE LEVEL ORDER TRAVERSAL     //
+//////////////////////////////////////////////
+
+/*
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+Example 1:
+Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[9,20],[15,7]]
+*/
+const levelOrder = (root) => {
+  if (!root) return [];
+
+  let result = []
+  let queue = [root]
+
+  while (queue.length > 0) {
+      let level = []
+      let levelSize = queue.length
+
+      for(let i = 0; i <levelSize; i++){
+          let node = queue.shift()
+          level.push(node.val)
+
+          if (node.left) {
+              queue.push(node.left)
+          }
+          if (node.right) {
+              queue.push(node.right)
+          }
+      }
+      result.push(level)
+  }
+  return result
+};
