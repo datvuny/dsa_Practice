@@ -32,7 +32,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-`dsa_Practice` is my attempts to completing neetcode blind dsa problems using JavaScipt
+`dsa_Practice` is my attempt to completing neetcode blind dsa problems using JavaScipt
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
