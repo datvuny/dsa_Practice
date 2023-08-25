@@ -74,9 +74,9 @@ This list of problems can be used as a study guide or practice
 - [ ] Add more problem sets
 - [ ] Add optimal solutions
 - [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-    - [ ] Vietnamese
+    - [ ] Python
+    - [ ] Java
+    - [ ] C
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
