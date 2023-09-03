@@ -182,3 +182,53 @@ Example 1:
 Input: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
 Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
 */
+
+const pacificAtlantic = (heights) => {
+    if (!heights || heights <1) return []
+
+    const rows = heights.length;
+    const cols = heights[0].length;
+    const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    
+    const canFlowToPacific = Array.from({ length: rows }, () => Array(cols).fill(false));
+    const canFlowToAtlantic = Array.from({ length: rows }, () => Array(cols).fill(false));
+    
+    const dfs = (row, col, ocean) => {
+        ocean[row][col] = true;
+        for (const [dr, dc] of directions) {
+            const newRow = row + dr;
+            const newCol = col + dc;
+            if (
+                newRow >= 0 &&
+                newRow < rows &&
+                newCol >= 0 &&
+                newCol < cols &&
+                !ocean[newRow][newCol] &&
+                heights[newRow][newCol] >= heights[row][col]
+            ) {
+                dfs(newRow, newCol, ocean);
+            }
+        }
+    };
+    
+    for (let i = 0; i < rows; i++) {
+        dfs(i, 0, canFlowToPacific);
+        dfs(i, cols - 1, canFlowToAtlantic);
+    }
+    
+    for (let j = 0; j < cols; j++) {
+        dfs(0, j, canFlowToPacific);
+        dfs(rows - 1, j, canFlowToAtlantic);
+    }
+    
+    const result = [];
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (canFlowToPacific[i][j] && canFlowToAtlantic[i][j]) {
+                result.push([i, j]);
+            }
+        }
+    }
+    
+    return result;
+};
