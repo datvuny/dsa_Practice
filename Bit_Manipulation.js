@@ -59,21 +59,35 @@ Easy
 1.2K
 Companies
 Reverse bits of a given 32 bits unsigned integer.
-
 Note:
-
 Note that in some languages, such as Java, there is no unsigned integer type. In this case, both input and output will be given as a signed integer type. They should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
 In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 2 above, the input represents the signed integer -3 and the output represents the signed integer -1073741825.
- 
-
 Example 1:
-
 Input: n = 00000010100101000001111010011100
 Output:    964176192 (00111001011110000010100101000000)
 Explanation: The input binary string 00000010100101000001111010011100 represents the unsigned integer 43261596, so return 964176192 which its binary representation is 00111001011110000010100101000000.
 Example 2:
-
 Input: n = 11111111111111111111111111111101
 Output:   3221225471 (10111111111111111111111111111111)
 Explanation: The input binary string 11111111111111111111111111111101 represents the unsigned integer 4294967293, so return 3221225471 which its binary representation is 10111111111111111111111111111111.
 */
+/*
+ Initialize result to 0; this will store the reversed integer.
+
+Loop 32 times because you are working with 32 bits.
+
+In each iteration:
+
+Left-shift result by 1, effectively making space for the next bit to be added.
+Use bitwise AND (&) with n to get the least significant bit of n. This bit will be added to result.
+Right-shift n by 1 to prepare for the next iteration.
+Finally, return result after converting it to an unsigned 32-bit integer using >>> 0.
+  */
+const reverseBits = (n) => {
+    let result = 0
+    for (let i = 0; i<32; i++) {
+        result = (result << 1) | (n & 1);
+        n >>= 1;
+    }
+    return result >>> 0
+};
