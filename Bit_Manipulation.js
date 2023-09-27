@@ -104,3 +104,7 @@ Input: nums = [0,1]
 Output: 2
 Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
 */
+
+const missingNumber = (nums)=> {
+    
+};
