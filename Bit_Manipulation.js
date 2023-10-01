@@ -106,5 +106,8 @@ Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0
 */
 
 const missingNumber = (nums)=> {
-    
+  const n = nums.length;
+  let expectedSum = (n * (n + 1)) / 2;
+  let actualSum = nums.reduce((acc, num) => acc + num, 0);
+  return expectedSum - actualSum;
 };
