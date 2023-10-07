@@ -18,4 +18,5 @@ Explanation: There are three ways to climb to the top.
 */
 const climbStairs = (n)=> {
    if (n<2) return 1
+   
 };
