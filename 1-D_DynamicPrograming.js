@@ -17,6 +17,15 @@ Explanation: There are three ways to climb to the top.
 3. 2 steps + 1 step
 */
 const climbStairs = (n)=> {
-   if (n<2) return 1
-   
+    if (n<2) return 1
+    let firstStep = 1;
+    let secondStep = 1;
+    let thirdStep = 0;
+
+    for (let i = 2; i <= n; i++) {
+        thirdStep = firstStep + secondStep;
+        firstStep = secondStep;
+        secondStep = thirdStep;
+    }
+    return thirdStep;
 };
