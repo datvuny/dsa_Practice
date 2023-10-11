@@ -17,15 +17,18 @@ Explanation: There are three ways to climb to the top.
 3. 2 steps + 1 step
 */
 const climbStairs = (n)=> {
-    if (n<2) return 1
-    let firstStep = 1;
-    let secondStep = 1;
-    let thirdStep = 0;
-
-    for (let i = 2; i <= n; i++) {
-        thirdStep = firstStep + secondStep;
-        firstStep = secondStep;
-        secondStep = thirdStep;
-    }
-    return thirdStep;
+    if (n <= 2) {
+        return n; // For n <= 2, there are n distinct ways
+      }
+    
+      let prev1 = 1; // Represents the number of ways for n - 1
+      let prev2 = 2; // Represents the number of ways for n - 2
+    
+      for (let i = 3; i <= n; i++) {
+        const current = prev1 + prev2; // Number of ways for n
+        prev1 = prev2; // Update prev1 for the next iteration
+        prev2 = current; // Update prev2 for the next iteration
+      }
+    
+      return prev2; // The result is the number of ways for n
 };
