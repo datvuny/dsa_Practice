@@ -73,6 +73,7 @@ This list of problems can be used as a study guide or practice
 
 - [ ] Add more problem sets
 - [ ] Add optimal solutions
+- [ ] Add video solutions
 - [ ] Multi-language Support
     - [ ] Python
     - [ ] Java
