@@ -32,4 +32,3 @@ const climbStairs = (n)=> {
     
       return prev2; // The result is the number of ways for n
 };
-    
