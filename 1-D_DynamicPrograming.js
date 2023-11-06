@@ -55,5 +55,5 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 */
 
 const rob = nums => {
-    
+    let
 }
