@@ -57,4 +57,5 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 const rob = nums => {
     const n = nums.length
     if (n === 0) return 0
+    if (n === 1) return nums[0]
 }
